@@ -1,0 +1,92 @@
+En-têtes principaux pour X11
+
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/Xos.h>
+#include <X11/Xatom.h>
+#include <X11/keysym.h>
+
+
+Xlib.h : En-tête principal pour les fonctions de base de X11.
+Xutil.h : Contient des utilitaires supplémentaires pour la gestion des fenêtres et des graphiques.
+Xos.h : Fournit des définitions pour les fonctions dépendantes du système d'exploitation.
+Xatom.h : Pour la gestion des atomes (propriétés des fenêtres).
+keysym.h : Pour la gestion des codes des touches du clavier.
+
+
+Fonctions courantes de la bibliothèque X11
+Voici une liste des fonctions les plus utilisées dans la programmation avec X11, classées par catégorie :
+
+
+
+1. Initialisation et connexion au serveur X
+
+Display *XOpenDisplay(char *display_name) : Ouvre une connexion au serveur X.
+
+int XCloseDisplay(Display *display) : Ferme la connexion au serveur X.
+
+int DefaultScreen(Display *display) : Retourne l'écran par défaut.
+
+Window RootWindow(Display *display, int screen_number) : Retourne la fenêtre racine.
+
+
+
+2. Création et gestion des fenêtres
+
+Window XCreateSimpleWindow(Display *display, Window parent, int x, int y, unsigned int width, unsigned int height, unsigned int border_width, unsigned long border, unsigned long background) : Crée une fenêtre simple.
+
+int XMapWindow(Display *display, Window w) : Affiche une fenêtre.
+
+int XUnmapWindow(Display *display, Window w) : Masque une fenêtre.
+
+int XDestroyWindow(Display *display, Window w) : Détruit une fenêtre.
+
+int XMoveWindow(Display *display, Window w, int x, int y) : Déplace une fenêtre.
+
+int XResizeWindow(Display *display, Window w, unsigned int width, unsigned int height) : Redimensionne une fenêtre.
+
+
+
+3. Gestion des événements
+
+int XSelectInput(Display *display, Window w, long event_mask) : Définit les événements à écouter pour une fenêtre.
+
+int XNextEvent(Display *display, XEvent *event_return) : Attend le prochain événement.
+
+int XPending(Display *display) : Vérifie s'il y a des événements en attente.
+
+int XSendEvent(Display *display, Window w, Bool propagate, long event_mask, XEvent *event_send) : Envoie un événement à une fenêtre.
+
+
+
+4. Dessin et graphiques
+
+GC XCreateGC(Display *display, Drawable d, unsigned long valuemask, XGCValues *values) : Crée un contexte graphique.
+
+int XDrawLine(Display *display, Drawable d, GC gc, int x1, int y1, int x2, int y2) : Dessine une ligne.
+
+int XDrawRectangle(Display *display, Drawable d, GC gc, int x, int y, unsigned int width, unsigned int height) : Dessine un rectangle.
+
+int XFillRectangle(Display *display, Drawable d, GC gc, int x, int y, unsigned int width, unsigned int height) : Remplit un rectangle.
+
+int XDrawString(Display *display, Drawable d, GC gc, int x, int y, const char *string, int length) : Affiche une chaîne de caractères.
+
+
+
+5. Gestion des couleurs
+
+Colormap XDefaultColormap(Display *display, int screen) : Retourne la table des couleurs par défaut.
+
+int XAllocColor(Display *display, Colormap colormap, XColor *color) : Alloue une couleur.
+
+int XSetForeground(Display *display, GC gc, unsigned long foreground) : Définit la couleur de premier plan.
+
+
+
+6. Gestion des entrées clavier/souris
+
+int XQueryPointer(Display *display, Window w, Window *root_return, Window *child_return, int *root_x_return, int *root_y_return, int *win_x_return, int *win_y_return, unsigned int *mask_return) : Récupère la position de la souris.
+
+KeySym XLookupKeysym(XKeyEvent *key_event, int index) : Récupère le symbole d'une touche.
+
+

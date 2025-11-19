@@ -4,6 +4,6 @@
 #include <stdio.h>
 
 int main (void) {
-	printf("test\n");
+	int rejouer;
 	return EXIT_SUCCESS;
 }
